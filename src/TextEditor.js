@@ -3,7 +3,6 @@ import Quill from "quill"
 import "quill/dist/quill.snow.css"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
-require('dotenv').config();
 
 const SAVE_INTERVAL_MS = 2000
 const TOOLBAR_OPTIONS = [
@@ -24,10 +23,9 @@ export default function TextEditor() {
   const [socket, setSocket] = useState()
   const [quill, setQuill] = useState()
 
-  const BACKEND_URL = process.env.BACKEND_URL;
 
   useEffect(() => {
-    const s = io(BACKEND_URL)
+    const s = io("https://paper-link-backend-2.onrender.com")
     setSocket(s)
 
     return () => {
